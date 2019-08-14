@@ -24,11 +24,15 @@ public class SocketServer : MonoBehaviour
 
     private const int MAX_CLIENT_NUM = 1;
 
+    Socket _socket;
+
     public static SocketServer Ins;
 
     void Awake()
     {
         Ins = this;
+
+        SetIP("127.0.0.1", Default.SERVER_PORT);
     }
 
     void OnDestroy()
@@ -36,14 +40,19 @@ public class SocketServer : MonoBehaviour
         Ins = null;
     }
 
-    public void SetIP(string ip,string port)
+    public bool BeSocketConnected()
+    {
+        return _socket.Connected;
+    }
+
+    private void SetIP(string ip,int port)
     {
         try
         {
 
             IP = IPAddress.Parse(ip);
 
-            Port = int.Parse(port);
+            Port = port;
 
         }
         catch
@@ -57,16 +66,42 @@ public class SocketServer : MonoBehaviour
     {
         ProcessData = processData;
 
-        Socket SockeServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-        SockeServer.Bind(new IPEndPoint(IP, Port));
+        _socket.Bind(new IPEndPoint(IP, Port));
 
-        SockeServer.Listen(MAX_CLIENT_NUM);//客户端最大数
+        _socket.Listen(MAX_CLIENT_NUM);//客户端最大数
 
-        SockeServer.BeginAccept(new AsyncCallback(Accept), SockeServer);
+        _socket.BeginAccept(new AsyncCallback(Accept), _socket);
 
-        Debug.Log("服务已启动");
+        
+        Debug.Log("server is listening!!! ip:"+IP+" port:"+Port);
 
+    }
+
+    public void SafeClose()
+    {
+        if (_socket == null)
+            return;
+
+        if (!_socket.Connected)
+            return;
+
+        try
+        {
+            _socket.Shutdown(SocketShutdown.Both);
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            _socket.Close();
+        }
+        catch
+        {
+        }
     }
 
     //处理一个新的连接
