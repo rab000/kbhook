@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class NTest : MonoBehaviour
 {
-    
+
+    AsyncTCPClient client;
+
+    AsyncTCPServer server;
+
+    private void Awake()
+    {
+        client = new AsyncTCPClient();
+
+        server = new AsyncTCPServer();
+    }
+
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.F1))
@@ -48,6 +59,24 @@ public class NTest : MonoBehaviour
             SocketClient.Ins.SendMsg(ib.ToArray());
 
             Debug.Log("client send msg!");
+        }
+
+        if (Input.GetKeyUp(KeyCode.F6))
+        {
+
+            server.Start();
+        }
+
+        if (Input.GetKeyUp(KeyCode.F7))
+        {
+
+            client.AsynConnect();
+        }
+
+        if (Input.GetKeyUp(KeyCode.F8))
+        {
+
+            client.AsynSend("testF8");
         }
 
     }
