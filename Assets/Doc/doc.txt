@@ -1,0 +1,8 @@
+System.Windows.Forms的引用,这个东西是用来使用SendKeys，最终没起作用
+https://blog.csdn.net/zxy13826134783/article/details/79660950
+
+
+
+使用插件解决问题
+inputsimulator
+https://archive.codeplex.com/?p=inputsimulator
