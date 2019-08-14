@@ -79,12 +79,6 @@ public class SocketClient : MonoBehaviour
 
         Debug.Log("start close client socket2");
 
-
-        if (true)
-        {
-            return;
-        }
-
         try
         {
             _socket.Shutdown(SocketShutdown.Both);
@@ -94,7 +88,11 @@ public class SocketClient : MonoBehaviour
             Debug.LogError("Client shutdown exp :" + e.ToString());
         }
 
-        
+        if (true)
+        {
+            return;
+        }
+
 
         try
         {
