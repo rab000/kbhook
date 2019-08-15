@@ -27,16 +27,6 @@ public class ClientMgr : MonoBehaviour
         SetState(ClientStateEnum.Connect);
     }
 
-    void OnEnable()
-    {
-        SimpleEventMgr.Regsit(Default.EVENT_KB_CLICK, ProcessKBMsg);
-    }
-
-    void OnDisable()
-    {
-        SimpleEventMgr.Remove(Default.EVENT_KB_CLICK, ProcessKBMsg);
-    }
-
     public enum ClientStateEnum
     {
         NULL,
@@ -98,21 +88,5 @@ public class ClientMgr : MonoBehaviour
         });
     }
 
-    public void SendKBMsg2Server(string msg)
-    {
-        AsyncTCPClient.Ins.AsynSend(msg);
-    }
-
-    public void ProcessKBMsg(string name,object data)
-    {
-        string key = (string)data;
-
-        switch (key)
-        {
-            //NTODO 处理发送所有按键
-            case "Alt":
-                break;
-        }
-    }
 
 }
