@@ -15,7 +15,11 @@ public class AsyncTCPServer
 
     private const int PORT = 54321;
 
-    Socket socket;
+    public static AsyncTCPServer Ins = new AsyncTCPServer();
+
+    public Socket socket;
+
+    public static bool BeListening = false;
 
     public void Start(Action OnStart = null)
     {
@@ -26,6 +30,9 @@ public class AsyncTCPServer
         socket.Bind(ipe);
         //设置监听
         socket.Listen(MAX_CONNECT_NUM);
+
+        BeListening = true;
+
         //连接客户端
         AsyncAccept();
 
@@ -33,6 +40,11 @@ public class AsyncTCPServer
 
         OnStart?.Invoke();
 
+    }
+
+    public void Close()
+    {
+        //NTODO close server
     }
 
     /// <summary>

@@ -30,21 +30,19 @@ public class ConnectPanel : MonoBehaviour
     {
         int port = int.Parse(Port_InputField.text);
 
-        Debug.Log("ConnectClick ip:"+ IP_InputField.text+" port:"+port);
+        string ip = IP_InputField.text;
 
-        SocketClient.Ins.SetIP(IP_InputField.text,port);
-
-        SocketClient.Ins.StartConnect();
-
-        Client.Ins.SetState(Client.ClientStateEnum.Keyboard);
+        Debug.Log("ConnectClick ip:"+ ip+" port:"+port);
+       
+        ClientMgr.Ins.Connect(ip,port);
 
     }
 
     public void OnServerStartClick()
     {
-        if (SocketServer.Ins.BeSocketConnected())
+        if (ServerMgr.Ins.BeServerConnect())
         {
-            SocketServer.Ins.SafeClose();
+            ServerMgr.Ins.CloseServer();
 
             var text = ServerStartBtn.transform.Find("Text").GetComponent<Text>();
 
@@ -53,7 +51,7 @@ public class ConnectPanel : MonoBehaviour
         }
         else
         {
-            Server.Ins.StartListen();
+            ServerMgr.Ins.StartListen();
 
             var text = ServerStartBtn.transform.Find("Text").GetComponent<Text>();
 

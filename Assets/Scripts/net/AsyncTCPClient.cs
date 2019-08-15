@@ -10,19 +10,26 @@ public class AsyncTCPClient
 
     public Socket socket;
 
+    public static AsyncTCPClient Ins = new AsyncTCPClient();
+
+    private Action OnConnectSucces;
+
     /// <summary>
     /// 连接到服务器
     /// </summary>
-    public void AsynConnect()
+    public void AsynConnect(string ip="127.0.0.1",int port=54321,Action OnConnect=null)
     {
-        Debug.Log("客户段开始连接 127.0.0.1 "+Default.SERVER_PORT);
+        
+        Debug.Log("客户段开始连接 ip "+ ip +" port:"+Default.SERVER_PORT);
         //端口及IP
-        IPEndPoint ipe = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Default.SERVER_PORT);
+        IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), port);
         //创建套接字
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         //开始连接到服务器
         socket.BeginConnect(ipe, asyncResult =>
         {
+            OnConnect?.Invoke();
+
             socket.EndConnect(asyncResult);
 
             Debug.Log("客户段开始连接成功，开始发送消息");

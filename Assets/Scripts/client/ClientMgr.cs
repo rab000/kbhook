@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class Client : MonoBehaviour
+public class ClientMgr : MonoBehaviour
 {
 
     [SerializeField] Transform ConnectPanelTrm;
 
     [SerializeField] Transform AppPanelTrm;
 
-    public static Client Ins;
+    public static ClientMgr Ins;
 
     void Awake()
     {
@@ -26,6 +27,16 @@ public class Client : MonoBehaviour
         SetState(ClientStateEnum.Connect);
     }
 
+    void OnEnable()
+    {
+        SimpleEventMgr.Regsit(Default.EVENT_KB_CLICK, ProcessKBMsg);
+    }
+
+    void OnDisable()
+    {
+        SimpleEventMgr.Remove(Default.EVENT_KB_CLICK, ProcessKBMsg);
+    }
+
     public enum ClientStateEnum
     {
         NULL,
@@ -34,6 +45,7 @@ public class Client : MonoBehaviour
     }
 
     ClientStateEnum curState = ClientStateEnum.NULL;
+
     ClientStateEnum preState = ClientStateEnum.NULL;
 
     public void SetState(ClientStateEnum state)
@@ -75,6 +87,30 @@ public class Client : MonoBehaviour
                 break;
             case ClientStateEnum.Keyboard:
 
+                break;
+        }
+    }
+
+    public void Connect(string ip, int port)
+    {
+        AsyncTCPClient.Ins.AsynConnect(ip,port, ()=> {
+            SetState(ClientStateEnum.Keyboard);
+        });
+    }
+
+    public void SendKBMsg2Server(string msg)
+    {
+        AsyncTCPClient.Ins.AsynSend(msg);
+    }
+
+    public void ProcessKBMsg(string name,object data)
+    {
+        string key = (string)data;
+
+        switch (key)
+        {
+            //NTODO 处理发送所有按键
+            case "Alt":
                 break;
         }
     }
