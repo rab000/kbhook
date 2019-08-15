@@ -15,17 +15,19 @@ public class AsyncTCPServer
 
     private const int PORT = 54321;
 
+    Socket socket;
+
     public void Start(Action OnStart = null)
     {
         //创建套接字
         IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(Default.SERVER_IP), Default.SERVER_PORT);
-        Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         //绑定端口和IP
         socket.Bind(ipe);
         //设置监听
         socket.Listen(MAX_CONNECT_NUM);
         //连接客户端
-        AsyncAccept(socket);
+        AsyncAccept();
 
         Debug.Log("服务段启动 端口6065");
 
@@ -37,21 +39,22 @@ public class AsyncTCPServer
     /// 连接到客户端
     /// </summary>
     /// <param name="socket"></param>
-    private void AsyncAccept(Socket socket)
+    private void AsyncAccept()
     {
         socket.BeginAccept(asyncResult =>
         {
             //获取客户端套接字
 
-            Socket client = socket.EndAccept(asyncResult);
+            Socket clientSocket = socket.EndAccept(asyncResult);
 
-            Debug.Log(string.Format("客户端{0}请求连接...", client.RemoteEndPoint));
+            Debug.Log(string.Format("客户端{0}请求连接...", clientSocket.RemoteEndPoint));
 
-            AsyncSend(client, "服务器收到连接请求");
+            AsyncSend(clientSocket, "服务器收到连接请求");
 
-            AsyncSend(client, string.Format("欢迎你{0}", client.RemoteEndPoint));
+            AsyncSend(clientSocket, string.Format("欢迎你{0}", clientSocket.RemoteEndPoint));
 
-            AsyncReveive(client);
+            //NTODO 这里是后补的，否则只能加一条消息
+            AsyncReveive(clientSocket);
 
         }, null);
 
@@ -61,22 +64,24 @@ public class AsyncTCPServer
     /// 接收消息
     /// </summary>
     /// <param name="client"></param>
-    private void AsyncReveive(Socket socket)
+    private void AsyncReveive(Socket clientSocket)
     {
         
         byte[] data = new byte[1024];
         try
         {
             //开始接收消息
-            socket.BeginReceive(data, 0, data.Length, SocketFlags.None,
+            clientSocket.BeginReceive(data, 0, data.Length, SocketFlags.None,
             asyncResult =>
             {
 
-                int length = socket.EndReceive(asyncResult);
+                int length = clientSocket.EndReceive(asyncResult);
 
                 Debug.Log("---服务端接受长度:"+length);
 
                 Debug.Log(string.Format("服务器收到:{0}", Encoding.UTF8.GetString(data)));
+
+                AsyncReveive(clientSocket);
 
             }, null);
 
