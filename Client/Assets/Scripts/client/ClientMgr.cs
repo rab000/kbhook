@@ -75,7 +75,7 @@ public class ClientMgr : MonoBehaviour
         {
             case ClientStateEnum.Connect:
                 Debug.Log("hide panel Connect0");
-                ConnectPanelTrm.gameObject.SetActive(true);
+                ConnectPanelTrm.gameObject.SetActive(false);
                 Debug.Log("hide panel Connect1");
                 break;
             case ClientStateEnum.Keyboard:
