@@ -13,16 +13,16 @@ public class TDemo : MonoBehaviour
 
     InputSimulator IIS;
 
-    KeyboardSimulator ks;
 
     void Start()
     {
+        IIS = new InputSimulator();
+
         hook = new CSHook();
 
         Debug.Log("start hook!!!");
+
         hook.InstallHook(TT);
-
-
     }
 
     public void TT(CSHook.信息结构体 param, out bool handle)
@@ -39,18 +39,41 @@ public class TDemo : MonoBehaviour
 
             handle = true;
         }
+        else if (param.vkCode == 112)//f1
+        {
+            
+
+            handle = true;
+        }
         else if (param.vkCode == 114)//f3
         {
             //SendKeys.SendWait("{ABCDE}");
             //SendKeys.Flush();
-            var sim = new InputSimulator();
+            
             //sim.Keyboard.KeyPress(VirtualKeyCode.VK_X);
-            sim.Keyboard.TextEntry("go go go!!!");
-
+            IIS.Keyboard.TextEntry("go go go!!!");
+            
             handle = true;
         }
         else if (param.vkCode == 115)//f4
         {
+            Debug.Log("f4 click");
+            IIS.Mouse.MoveMouseBy(20,20);
+
+            handle = true;
+        }
+        else if (param.vkCode == 116)//f5
+        {
+            Debug.Log("f5 click");
+            IIS.Mouse.MoveMouseTo(3000,100);
+
+            handle = true;
+        }
+        else if (param.vkCode == 117)//f6
+        {
+            Debug.Log("f6 click");
+            IIS.Mouse.MoveMouseToPositionOnVirtualDesktop(500, 100);
+
             handle = true;
         }
         else
