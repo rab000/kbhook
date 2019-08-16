@@ -2,15 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NumPanel : MonoBehaviour
+public class NumPanel : BasePanel
 {
-    // Start is called before the first frame update
+    public static NumPanel Ins;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        PanelName = "numPanel";
+
+        Ins = this;
+    }
+
+    void OnDestroy()
+    {
+        Ins = null;
+    }
+
     void Start()
     {
         
     }
-
-    // Update is called once per frame
+   
     void Update()
     {
         

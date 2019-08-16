@@ -14,7 +14,7 @@ public class ClientMgr : MonoBehaviour
 
     void Awake()
     {
-        Ins = this;
+        Ins = this;        
     }
 
     void OnDestroy()

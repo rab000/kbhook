@@ -14,6 +14,11 @@ public class AsyncTCPClient
 
     private Action OnConnectSucces;
 
+    public bool BeConected()
+    {
+        return socket.Connected;
+    }
+
     /// <summary>
     /// 连接到服务器
     /// </summary>

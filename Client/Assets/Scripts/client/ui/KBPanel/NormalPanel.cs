@@ -2,17 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalPanel : MonoBehaviour
+public class NormalPanel : BasePanel
 {
-    // Start is called before the first frame update
-    void Start()
+    public static NormalPanel Ins;
+
+    protected override void Awake()
     {
-        
+        base.Awake();
+
+        PanelName = "normalPanel";
+
+        Ins = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDestroy()
     {
-        
+        Ins = null;
     }
+
+    public override void ProcessPressAbleKeyUI(string key, bool bPress)
+    {
+        switch (key)
+        {
+            case "alt":
+                break;
+            case "shift":
+                break;
+            case "ctrl":
+                break;
+            case "caps":
+                break;
+        }
+    }
+
 }
