@@ -359,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &45094127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3185,6 +3185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8ee7ec263ee824d86a76850a2839b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PanelName: 
 --- !u!1001 &562354872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4432,6 +4433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 726348571}
   - component: {fileID: 726348569}
+  - component: {fileID: 726348570}
   m_Layer: 0
   m_Name: root
   m_TagString: Untagged
@@ -4453,6 +4455,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConnectPanelTrm: {fileID: 61572137}
   AppPanelTrm: {fileID: 1367795099}
+--- !u!114 &726348570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726348568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d6efdba8dafb247a7f34298136eed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &726348571
 Transform:
   m_ObjectHideFlags: 0
@@ -6160,7 +6174,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 192.168.1.111
+  m_Text: 127.0.0.1
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -8732,6 +8746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a803d8aa5aa4dce4294d6070210fdfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PanelName: 
 --- !u!1 &1462522740
 GameObject:
   m_ObjectHideFlags: 0
@@ -8789,6 +8804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9887d020a02af49aeef33ddc69cac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PanelName: 
 --- !u!1001 &1466596205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9706,6 +9722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45be3e7e94c956479630bf45fd7a5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurPanel: {fileID: 0}
 --- !u!1 &1638516955
 GameObject:
   m_ObjectHideFlags: 0
@@ -11202,6 +11219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e2576854e74e94eb6feceb88e65234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PanelName: 
 --- !u!1 &2102893422
 GameObject:
   m_ObjectHideFlags: 0

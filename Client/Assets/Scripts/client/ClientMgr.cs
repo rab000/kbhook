@@ -42,11 +42,11 @@ public class ClientMgr : MonoBehaviour
     {
         if (state == curState) return;
 
-        Debug.Log("SetState切换状态到:" + state);
-
         preState = curState;
         StateExit(preState);
         curState = state;
+
+        Debug.Log("SetState切换状态到:" + state);
 
         switch (curState)
         {
@@ -54,8 +54,9 @@ public class ClientMgr : MonoBehaviour
                 ConnectPanelTrm.gameObject.SetActive(true);
                 break;
             case ClientStateEnum.Keyboard:
-                ConnectPanelTrm.gameObject.SetActive(false);
+                Debug.Log("show panel App0");
                 AppPanelTrm.gameObject.SetActive(true);
+                Debug.Log("show panel App1");
                 break;
         }
     }
@@ -73,7 +74,9 @@ public class ClientMgr : MonoBehaviour
         switch (preState)
         {
             case ClientStateEnum.Connect:
+                Debug.Log("hide panel Connect0");
                 ConnectPanelTrm.gameObject.SetActive(true);
+                Debug.Log("hide panel Connect1");
                 break;
             case ClientStateEnum.Keyboard:
 
@@ -84,7 +87,9 @@ public class ClientMgr : MonoBehaviour
     public void Connect(string ip, int port)
     {
         AsyncTCPClient.Ins.AsynConnect(ip,port, ()=> {
+
             SetState(ClientStateEnum.Keyboard);
+
         });
     }
 

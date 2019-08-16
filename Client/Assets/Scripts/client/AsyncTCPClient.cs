@@ -33,11 +33,16 @@ public class AsyncTCPClient
         //开始连接到服务器
         socket.BeginConnect(ipe, asyncResult =>
         {
-            OnConnect?.Invoke();
-
+            
             socket.EndConnect(asyncResult);
 
             Debug.Log("客户段开始连接成功，开始发送消息");
+
+
+            Loom.QueueOnMainThread(()=> {
+                OnConnect?.Invoke();
+            });
+            
             //向服务器发送消息
             AsynSend("你好我是客户端");
 

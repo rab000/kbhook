@@ -40,7 +40,7 @@ public class AsyncTCPServer
         //连接客户端
         AsyncAccept();
 
-        Debug.Log("服务段启动 端口6065");
+        Debug.Log("服务段启动 端口"+ PORT);
 
         OnStart?.Invoke();
 
@@ -63,7 +63,10 @@ public class AsyncTCPServer
 
             Socket clientSocket = socket.EndAccept(asyncResult);
 
-            OnClientConnect?.Invoke(clientSocket.RemoteEndPoint.ToString());
+            Loom.QueueOnMainThread(()=> {
+                OnClientConnect?.Invoke(clientSocket.RemoteEndPoint.ToString());
+            });
+            
 
             Debug.Log(string.Format("客户端{0}请求连接...", clientSocket.RemoteEndPoint));
 
@@ -101,7 +104,10 @@ public class AsyncTCPServer
 
                 Debug.Log(string.Format("服务器收到:{0}", msg));
 
-                OnProccessMsg?.Invoke(msg);
+                Loom.QueueOnMainThread(() => {
+                    OnProccessMsg?.Invoke(msg);
+                });
+                
 
                 AsyncReveive(clientSocket);
 
