@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using WindowsInput;
+using WindowsInput.Native;
 
 public class ServerMgr : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class ServerMgr : MonoBehaviour
     public Text StartBtnText;
 
     public Text InfoText;
+
+    InputSimulator sim = new InputSimulator();
 
     void Awake()
     {
@@ -34,12 +38,14 @@ public class ServerMgr : MonoBehaviour
     {
         StartBtn.onClick.AddListener(OnBtnClick);
         AsyncTCPServer.Ins.OnClientConnect += OnClientConnect;
+        AsyncTCPServer.Ins.OnProccessMsg += ProcessKBData;
     }
 
     void OnDisable()
     {
         StartBtn.onClick.RemoveListener(OnBtnClick);
         AsyncTCPServer.Ins.OnClientConnect -= OnClientConnect;
+        AsyncTCPServer.Ins.OnProccessMsg -= ProcessKBData;
     }
 
     void OnBtnClick()
@@ -79,10 +85,31 @@ public class ServerMgr : MonoBehaviour
     {
         return AsyncTCPServer.BeListening;        
     }
+  
 
-    private void ProcessKBData(byte[] bs)
+    private void ProcessKBData(string msg)
+    {
+        Debug.Log("ServerMgr.ProcessKBData msg:"+msg);
+        if (!msg.Contains("mouse"))
+        {
+            ProcessKB(msg);
+        }
+        else
+        {
+            ProcessMouse(msg);
+        }
+
+    }
+
+    private void ProcessKB(string msg)
+    {        
+        sim.Keyboard.TextEntry(msg);
+    }
+
+    private void ProcessMouse(string msg)
     {
 
     }
+
 
 }

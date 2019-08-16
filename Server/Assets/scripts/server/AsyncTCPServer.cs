@@ -23,6 +23,8 @@ public class AsyncTCPServer
 
     public Action<string> OnClientConnect;
 
+    public Action<string> OnProccessMsg;
+
     public void Start(Action OnStart = null)
     {
         //创建套接字
@@ -95,7 +97,11 @@ public class AsyncTCPServer
 
                 Debug.Log("---服务端接受长度:"+length);
 
-                Debug.Log(string.Format("服务器收到:{0}", Encoding.UTF8.GetString(data)));
+                string msg = Encoding.UTF8.GetString(data);
+
+                Debug.Log(string.Format("服务器收到:{0}", msg));
+
+                OnProccessMsg?.Invoke(msg);
 
                 AsyncReveive(clientSocket);
 
