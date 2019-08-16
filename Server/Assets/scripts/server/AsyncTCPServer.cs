@@ -11,8 +11,8 @@ public class AsyncTCPServer
 
     private const int MAX_CONNECT_NUM = 2;
 
-    private const string IP = "127.0.0.1";
-
+    //private const string IP = "127.0.0.1";
+    private const string IP = "10.0.115.239";
     private const int PORT = 54321;
 
     public static AsyncTCPServer Ins = new AsyncTCPServer();
