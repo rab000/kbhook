@@ -1,18 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class MousePanelMidArea : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+public class MousePanelMidArea : MonoBehaviour,IDragHandler
+{    
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        //Debug.Log("deta:"+eventData.delta);
+        SendMouseMidEvent(eventData.delta.y);
+
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SendMouseMidEvent(float deltaY)
     {
-        
+        Default.SB.Clear();
+        Default.SB.Append("mouse|mid|");
+        float offy = deltaY * Default.MOUSE_MID_SPEED;
+        Default.SB.Append(offy);
+        string key = Default.SB.ToString();
+        SimpleEventMgr.Send(Default.EVENT_MOUSE, key);
     }
+
 }

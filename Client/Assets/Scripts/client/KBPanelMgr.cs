@@ -22,12 +22,14 @@ public class KBPanelMgr : MonoBehaviour
     void OnEnable()
     {
         SimpleEventMgr.Regsit(Default.EVENT_KB_CLICK, ProcessKBPress);
+        SimpleEventMgr.Regsit(Default.EVENT_MOUSE, ProcessMouse);
         SimpleEventMgr.Regsit(Default.EVENT_SWITCH_PANEL, ProcessSwitchPanel);
     }
 
     void OnDisable()
     {
         SimpleEventMgr.Remove(Default.EVENT_KB_CLICK);
+        SimpleEventMgr.Remove(Default.EVENT_MOUSE);
         SimpleEventMgr.Remove(Default.EVENT_SWITCH_PANEL);
     }
 
@@ -68,6 +70,16 @@ public class KBPanelMgr : MonoBehaviour
             Debug.LogError("sen msg when unconnect!!!");
         }
         
+
+    }
+
+    void ProcessMouse(string name, object data)
+    {
+        string key = (string)data;
+
+        //Debug.Log("KBPanel.ProcessMouse->客户端按下:" + key);
+
+        AsyncTCPClient.Ins.AsynSend(key);
 
     }
 
@@ -114,4 +126,6 @@ public class KBPanelMgr : MonoBehaviour
         if(null!=CurPanel)CurPanel.gameObject.SetActive(true);
 
     }
+
+
 }

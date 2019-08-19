@@ -1,4 +1,5 @@
-﻿
+﻿using System.Text;
+
 public class Default
 {
     public const string EVENT_KB_CLICK = "kb_click";
@@ -11,6 +12,12 @@ public class Default
     public const string SERVER_IP = "10.0.115.239";
     public const int SERVER_PORT = 54321;
 
+    //中轮滚动速度
+    public const float MOUSE_MID_SPEED = 1f;
+
+    public const float MOUSE_MOVE_SPEED = 1f;
+
+    public static StringBuilder SB = new StringBuilder();
 }
 
 public enum KBtnTypeEnum
