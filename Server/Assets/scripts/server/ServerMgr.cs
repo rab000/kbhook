@@ -12,6 +12,12 @@ public class ServerMgr : MonoBehaviour
 
     public Button StartBtn;
 
+    public InputField IPInputField;
+
+    public InputField PortInputField;
+
+    public Dropdown IPDropdown;
+
     public Text StartBtnText;
 
     public Text InfoText;
@@ -58,6 +64,22 @@ public class ServerMgr : MonoBehaviour
         }
         else
         {
+
+            string _ip = "";
+            int _port = 0;
+
+            if (!IPInputField.text.Equals("nil"))
+            {
+                _ip = IPInputField.text;
+                _port = int.Parse(PortInputField.text);
+            }
+            else
+            {
+                _ip = IPDropdown.captionText.text;
+                _port = int.Parse(PortInputField.text);
+            }
+
+            AsyncTCPServer.Ins.SetIPPort(_ip, _port);
             StartListen(() =>
             {
                 StartBtnText.text = "stop";

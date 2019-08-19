@@ -7,6 +7,8 @@ public class ConnectPanel : MonoBehaviour
 {
     [SerializeField] InputField IP_InputField;
 
+    [SerializeField] Dropdown IP_Dropdown;
+
     [SerializeField] InputField Port_InputField;
 
     [SerializeField] Button ClientConnectBtn;
@@ -26,8 +28,17 @@ public class ConnectPanel : MonoBehaviour
     {
         int port = int.Parse(Port_InputField.text);
 
-        string ip = IP_InputField.text;
+        string ip = null;
 
+        if (IP_InputField.text.Equals("nil"))
+        {
+            ip = IP_Dropdown.captionText.text;
+        }
+        else
+        {
+            ip = IP_InputField.text;
+        }
+      
         Debug.Log("ConnectClick ip:"+ ip+" port:"+port);
        
         ClientMgr.Ins.Connect(ip,port);

@@ -12,8 +12,8 @@ public class AsyncTCPServer
     private const int MAX_CONNECT_NUM = 2;
 
     //private const string IP = "127.0.0.1";
-    private const string IP = "10.0.115.239";
-    private const int PORT = 54321;
+    private  string IP = "10.0.115.239";
+    private  int Port = 54321;
 
     public static AsyncTCPServer Ins = new AsyncTCPServer();
 
@@ -28,7 +28,7 @@ public class AsyncTCPServer
     public void Start(Action OnStart = null)
     {
         //创建套接字
-        IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(IP), PORT);
+        IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(IP), Port);
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         //绑定端口和IP
         socket.Bind(ipe);
@@ -40,10 +40,16 @@ public class AsyncTCPServer
         //连接客户端
         AsyncAccept();
 
-        Debug.Log("服务段启动 端口"+ PORT);
+        Debug.Log("服务端开始监听 ip:"+ IP+" port:"+Port);
 
         OnStart?.Invoke();
 
+    }
+
+    public void SetIPPort(string ip,int port)
+    {
+        IP = ip;
+        Port = port;
     }
 
     public void Close()
