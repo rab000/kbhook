@@ -108,6 +108,37 @@ public class ServerMgr : MonoBehaviour
 
     private void ProcessMouse(string msg)
     {
+        string[] ss = msg.Split('|');
+       
+        string mouseKey = ss[1];
+
+        switch (mouseKey)
+        {
+            case "mid":
+                //ss[2] offy;
+                int scrollNum = int.Parse(ss[2]);
+                sim.Mouse.VerticalScroll(scrollNum);
+                break;
+            case "left":
+                sim.Mouse.LeftButtonClick();
+                break;
+            case "right":
+                sim.Mouse.RightButtonClick();
+                break;
+            case "move":
+                //ss[2] offx
+                //ss[3] offy
+                int offx = int.Parse(ss[2]);
+                int offy = int.Parse(ss[3]);
+                sim.Mouse.MoveMouseBy(offx,offy);
+                break;
+
+            default:
+
+                break;
+        }
+
+        //sim
 
     }
 

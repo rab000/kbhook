@@ -22,7 +22,7 @@ public class MousePanelMidArea : MonoBehaviour,IDragHandler
     {
         Default.SB.Clear();
         Default.SB.Append("mouse|mid|");
-        float offy = deltaY * Default.MOUSE_MID_SPEED;
+        int offy = deltaY * Default.MOUSE_MID_SPEED;
         Default.SB.Append(offy);
         string key = Default.SB.ToString();
         SimpleEventMgr.Send(Default.EVENT_MOUSE, key);

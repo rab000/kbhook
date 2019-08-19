@@ -7,7 +7,7 @@ public class MousePanelMouseArea : MonoBehaviour, IDragHandler
 {
     public void OnDrag(PointerEventData eventData)
     {
-        //Debug.Log("deta:"+eventData.delta);
+        Debug.Log("--deta:"+eventData.delta);
         SendMouseMoveEvent(eventData.delta);
 
     }

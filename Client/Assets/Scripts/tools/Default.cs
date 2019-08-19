@@ -13,9 +13,9 @@ public class Default
     public const int SERVER_PORT = 54321;
 
     //中轮滚动速度
-    public const float MOUSE_MID_SPEED = 1f;
+    public const int MOUSE_MID_SPEED = 1;
 
-    public const float MOUSE_MOVE_SPEED = 1f;
+    public const int MOUSE_MOVE_SPEED = 4;
 
     public static StringBuilder SB = new StringBuilder();
 }
