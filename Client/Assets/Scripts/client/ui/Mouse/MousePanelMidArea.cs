@@ -8,7 +8,7 @@ public class MousePanelMidArea : MonoBehaviour,IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        //Debug.Log("deta:"+eventData.delta);
+        Debug.Log("mid deta:"+eventData.delta.y);
         SendMouseMidEvent((int)eventData.delta.y);
 
     }
