@@ -24,7 +24,7 @@ public class ClientMgr : MonoBehaviour
 
     void Start()
     {
-        SetState(ClientStateEnum.Connect);
+        SetState(ClientStateEnum.Keyboard);
     }
 
     public enum ClientStateEnum
@@ -53,10 +53,8 @@ public class ClientMgr : MonoBehaviour
             case ClientStateEnum.Connect:
                 ConnectPanelTrm.gameObject.SetActive(true);
                 break;
-            case ClientStateEnum.Keyboard:
-                Debug.Log("show panel App0");
-                AppPanelTrm.gameObject.SetActive(true);
-                Debug.Log("show panel App1");
+            case ClientStateEnum.Keyboard:               
+                AppPanelTrm.gameObject.SetActive(true);                
                 break;
         }
     }
