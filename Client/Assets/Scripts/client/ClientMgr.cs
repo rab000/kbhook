@@ -24,7 +24,7 @@ public class ClientMgr : MonoBehaviour
 
     void Start()
     {
-        SetState(ClientStateEnum.Keyboard);
+        SetState(ClientStateEnum.Connect);
     }
 
     public enum ClientStateEnum

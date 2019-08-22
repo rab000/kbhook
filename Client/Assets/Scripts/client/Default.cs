@@ -16,7 +16,7 @@ public class Default
     public const int SERVER_PORT = 54321;
 
     //中轮滚动速度
-    public const int MOUSE_MID_SPEED = 1;
+    public const float MOUSE_MID_SPEED = 0.3f;
     //鼠标滚动速度
     public const int MOUSE_MOVE_SPEED = 4;
 

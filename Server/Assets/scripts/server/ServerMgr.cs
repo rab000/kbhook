@@ -137,8 +137,9 @@ public class ServerMgr : MonoBehaviour
         switch (mouseKey)
         {
             case "mid":
+                Debug.Log("mid ss2:" + ss[2] );
                 //ss[2] offy;
-                int scrollNum = int.Parse(ss[2]);
+                int scrollNum = -int.Parse(ss[2]);
                 sim.Mouse.VerticalScroll(scrollNum);
                 break;
             case "left":
@@ -150,6 +151,7 @@ public class ServerMgr : MonoBehaviour
             case "move":
                 //ss[2] offx
                 //ss[3] offy
+                Debug.Log("move ss2:"+ss[2]+" ss3:"+ss[3]);
                 int offx = int.Parse(ss[2]);
                 int offy = int.Parse(ss[3]);
                 sim.Mouse.MoveMouseBy(offx,offy);
