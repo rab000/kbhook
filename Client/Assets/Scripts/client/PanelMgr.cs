@@ -17,12 +17,20 @@ public class PanelMgr : MonoBehaviour
 
     public BasePanel CurPanel;
 
+    public NormalPanel _NormalPanel;
+
+    public CodePanel _CodePanel;
+
+    public NumPanel _NumPanel;
+
+    public FullPanel _FullPanel;
+
     void Start()
     {      
-        NormalPanel.Ins.gameObject.SetActive(false);
-        CodePanel.Ins.gameObject.SetActive(false);
-        NumPanel.Ins.gameObject.SetActive(false);
-        FullPanel.Ins.gameObject.SetActive(false);
+        _NormalPanel.gameObject.SetActive(false);
+        _CodePanel.gameObject.SetActive(false);
+        _NumPanel.gameObject.SetActive(false);
+        _FullPanel.gameObject.SetActive(false);
         ProcessSwitchPanel(Default.EVENT_SWITCH_PANEL, Default.PANEL_TYPE_FULL);
     }
 
@@ -117,17 +125,17 @@ public class PanelMgr : MonoBehaviour
         switch (panelName)
         {
             case Default.PANEL_TYPE_NORMAL:
-                CurPanel = NormalPanel.Ins;
+                CurPanel = _NormalPanel;
                 
                 break;
             case Default.PANEL_TYPE_CODE:
-                CurPanel = CodePanel.Ins;
+                CurPanel = _CodePanel;
                 break;
             case Default.PANEL_TYPE_NUM:
-                CurPanel = NumPanel.Ins;
+                CurPanel = _NumPanel;
                 break;
             case Default.PANEL_TYPE_FULL:
-                CurPanel = FullPanel.Ins;
+                CurPanel = _FullPanel;
                 break;
             default:
                 Debug.LogError("切换面板失败 panelName:"+panelName);
