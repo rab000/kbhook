@@ -8,6 +8,7 @@ public class NormalPanel : BasePanel
 
     protected override void Awake()
     {
+        
         base.Awake();
 
         PanelName = "normalPanel";

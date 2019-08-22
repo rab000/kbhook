@@ -17,13 +17,24 @@ public class KBPanelMgr : MonoBehaviour
 
     public BasePanel CurPanel;
 
-    
+
+
+    void Start()
+    {      
+        NormalPanel.Ins.gameObject.SetActive(false);
+        CodePanel.Ins.gameObject.SetActive(false);
+        NumPanel.Ins.gameObject.SetActive(false);
+        MousePanel.Ins.gameObject.SetActive(false);
+        ProcessSwitchPanel(Default.EVENT_SWITCH_PANEL, "mousePanel");
+    }
 
     void OnEnable()
     {
+       
         SimpleEventMgr.Regsit(Default.EVENT_KB_CLICK, ProcessKBPress);
         SimpleEventMgr.Regsit(Default.EVENT_MOUSE, ProcessMouse);
         SimpleEventMgr.Regsit(Default.EVENT_SWITCH_PANEL, ProcessSwitchPanel);
+        
     }
 
     void OnDisable()
@@ -88,6 +99,8 @@ public class KBPanelMgr : MonoBehaviour
     {
         string panelName = (string)data;
 
+        Debug.Log("ProcessSwitchPanel panelName:"+panelName);
+
         if (CurPanel != null)
         {
             string curPanelName = CurPanel.PanelName;
@@ -99,9 +112,12 @@ public class KBPanelMgr : MonoBehaviour
             }
             else
             {
+                Debug.Log("新切换panel与当前panel不同");
                 CurPanel.gameObject.SetActive(false);
             }    
         }
+
+        Debug.Log("KBPanelMgr.ProcessSwitchPanel 切换panelName:"+ panelName);
 
         switch (panelName)
         {
