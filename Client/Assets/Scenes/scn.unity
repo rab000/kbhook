@@ -4158,6 +4158,7 @@ GameObject:
   - component: {fileID: 303770583}
   - component: {fileID: 303770582}
   - component: {fileID: 303770581}
+  - component: {fileID: 303770584}
   m_Layer: 5
   m_Name: SelPanel
   m_TagString: Untagged
@@ -4225,7 +4226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4249,6 +4250,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303770579}
   m_CullTransparentMesh: 0
+--- !u!114 &303770584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303770579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c260dc94ef955834c8119077b3ecd8fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &314310192 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8394443086331711974, guid: 4618043efccc505438a9899cfe4da3c6,
