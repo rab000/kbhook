@@ -11,7 +11,7 @@ public class NormalPanel : BasePanel
         
         base.Awake();
 
-        PanelName = "normalPanel";
+        PanelName = Default.PANEL_TYPE_NORMAL;
 
         Ins = this;
     }

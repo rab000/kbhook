@@ -44,22 +44,22 @@ public class SelPanel : MonoBehaviour
 
     private void OnMouseBtnClick()
     {
-        SimpleEventMgr.Send(Default.EVENT_SWITCH_PANEL, "mousePanel");
+        SimpleEventMgr.Send(Default.EVENT_SWITCH_PANEL, Default.PANEL_TYPE_FULL);
     }
 
     private void OnKBBtnClick()
     {
-        SimpleEventMgr.Send(Default.EVENT_SWITCH_PANEL, "normalPanel");
+        SimpleEventMgr.Send(Default.EVENT_SWITCH_PANEL, Default.PANEL_TYPE_NORMAL);
     }
 
     private void OnNumBtnClick()
     {
-        SimpleEventMgr.Send(Default.EVENT_SWITCH_PANEL, "numPanel");
+        SimpleEventMgr.Send(Default.EVENT_SWITCH_PANEL, Default.PANEL_TYPE_NUM);
     }
 
     private void OnCodeBtnClick()
     {
-        SimpleEventMgr.Send(Default.EVENT_SWITCH_PANEL, "codePanel");
+        SimpleEventMgr.Send(Default.EVENT_SWITCH_PANEL, Default.PANEL_TYPE_CODE);
     }
    
 

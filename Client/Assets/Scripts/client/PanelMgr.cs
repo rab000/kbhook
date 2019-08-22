@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 面板主管理器
 /// </summary>
-public class KBPanelMgr : MonoBehaviour
+public class PannelMgr : MonoBehaviour
 {
 
     public static bool BeCapsLock;
@@ -22,8 +22,8 @@ public class KBPanelMgr : MonoBehaviour
         NormalPanel.Ins.gameObject.SetActive(false);
         CodePanel.Ins.gameObject.SetActive(false);
         NumPanel.Ins.gameObject.SetActive(false);
-        MousePanel.Ins.gameObject.SetActive(false);
-        ProcessSwitchPanel(Default.EVENT_SWITCH_PANEL, "mousePanel");
+        FullPanel.Ins.gameObject.SetActive(false);
+        ProcessSwitchPanel(Default.EVENT_SWITCH_PANEL, Default.PANEL_TYPE_FULL);
     }
 
     void OnEnable()
@@ -70,7 +70,7 @@ public class KBPanelMgr : MonoBehaviour
 
         if (AsyncTCPClient.Ins.BeConected())
         {
-            Debug.Log("KBPanelMgr.ProcessKBPress sendMsg key:"+key);
+            Debug.Log("PanelMgr.ProcessKBPress sendMsg key:"+key);
             AsyncTCPClient.Ins.AsynSend(key);
         }
         else
@@ -114,22 +114,20 @@ public class KBPanelMgr : MonoBehaviour
             }    
         }
 
-        //Debug.Log("KBPanelMgr.ProcessSwitchPanel 切换panelName:"+ panelName);
-
         switch (panelName)
         {
-            case "normalPanel":
+            case Default.PANEL_TYPE_NORMAL:
                 CurPanel = NormalPanel.Ins;
                 
                 break;
-            case "codePanel":
+            case Default.PANEL_TYPE_CODE:
                 CurPanel = CodePanel.Ins;
                 break;
-            case "numPanel":
+            case Default.PANEL_TYPE_NUM:
                 CurPanel = NumPanel.Ins;
                 break;
-            case "mousePanel":
-                CurPanel = MousePanel.Ins;
+            case Default.PANEL_TYPE_FULL:
+                CurPanel = FullPanel.Ins;
                 break;
             default:
                 Debug.LogError("切换面板失败 panelName:"+panelName);

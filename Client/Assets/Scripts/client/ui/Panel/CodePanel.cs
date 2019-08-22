@@ -11,7 +11,7 @@ public class CodePanel : BasePanel
 
         base.Awake();
 
-        PanelName = "codePanel";
+        PanelName = Default.PANEL_TYPE_CODE;
 
         Ins = this;
     }

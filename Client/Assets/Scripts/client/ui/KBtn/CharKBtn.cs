@@ -13,7 +13,7 @@ public class CharKBtn : BaseKBtn
 
     protected override void OnClick()
     {
-        if (KBPanelMgr.BeCapsLock)
+        if (PannelMgr.BeCapsLock)
         {
             SimpleEventMgr.Send(Default.EVENT_KB_CLICK, Name.ToUpper());
         }

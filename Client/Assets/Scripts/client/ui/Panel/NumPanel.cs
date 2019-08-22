@@ -10,7 +10,7 @@ public class NumPanel : BasePanel
     {
         base.Awake();
 
-        PanelName = "numPanel";
+        PanelName = Default.PANEL_TYPE_NUM;
 
         Ins = this;
     }

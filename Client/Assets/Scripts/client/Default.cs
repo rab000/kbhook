@@ -14,8 +14,14 @@ public class Default
 
     //中轮滚动速度
     public const int MOUSE_MID_SPEED = 1;
-
+    //鼠标滚动速度
     public const int MOUSE_MOVE_SPEED = 4;
+
+    //panel类型
+    public const string PANEL_TYPE_NORMAL = "normalPanel";
+    public const string PANEL_TYPE_NUM = "numPanel";
+    public const string PANEL_TYPE_CODE = "codePanel";
+    public const string PANEL_TYPE_FULL = "fullPanel";
 
     public static StringBuilder SB = new StringBuilder();
 }
@@ -26,3 +32,5 @@ public enum KBtnTypeEnum
     doublefunc,
     pressAble
 }
+
+
