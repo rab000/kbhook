@@ -8,6 +8,9 @@ public class Default
 
     public const string EVENT_SWITCH_PANEL = "switch_panel";
 
+    //切full panel subPanel
+    public const string EVENT_SWITCH_FULL_PANEL = "switch_full_panel";
+
     //public const string SERVER_IP = "127.0.0.1";
     public const string SERVER_IP = "10.0.115.239";
     public const int SERVER_PORT = 54321;
@@ -22,6 +25,13 @@ public class Default
     public const string PANEL_TYPE_NUM = "numPanel";
     public const string PANEL_TYPE_CODE = "codePanel";
     public const string PANEL_TYPE_FULL = "fullPanel";
+
+    //fullPanel subPanel
+    public const string FULL_SUB_PANEL_KB = "fullKB";
+    public const string FULL_SUB_PANEL_NUM = "fullNum";
+    public const string FULL_SUB_PANEL_CODE = "fullCode";
+    public const string FULL_SUB_PANEL_UNITY = "fullUnity";
+    public const string FULL_SUB_PANEL_VS = "fullVS";
 
     public static StringBuilder SB = new StringBuilder();
 }

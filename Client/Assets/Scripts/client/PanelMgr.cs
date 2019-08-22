@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 面板主管理器
 /// </summary>
-public class PannelMgr : MonoBehaviour
+public class PanelMgr : MonoBehaviour
 {
 
     public static bool BeCapsLock;

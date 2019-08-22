@@ -19,7 +19,7 @@ public class DoubleFuncKBtn : BaseKBtn
     protected override void OnClick()
     {
 
-        if (PannelMgr.BeShiftOn)
+        if (PanelMgr.BeShiftOn)
         {
             SimpleEventMgr.Send(Default.EVENT_KB_CLICK,Char2);
         }
