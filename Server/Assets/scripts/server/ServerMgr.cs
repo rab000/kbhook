@@ -28,6 +28,8 @@ public class ServerMgr : MonoBehaviour
     void Awake()
     {
         Ins = this;
+        ServerSocketMgr.RegistRecMsg(Default.CMD_KB, () => new Cmd4RecKB());
+        ServerSocketMgr.RegistRecMsg(Default.CMD_MOUSE, () => new Cmd4RecMouse());
     }
 
     void Start()

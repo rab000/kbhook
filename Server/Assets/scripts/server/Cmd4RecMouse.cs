@@ -11,6 +11,8 @@ public class Cmd4RecMouse : Cmd4Rec
 
     public override void Decode(byte[] bs)
     {
+        Debug.Log("Cmd4RecMouse.Decode");
+
         IoBuffer buffer = new IoBuffer(1024);
 
         buffer.PutBytes(bs);
