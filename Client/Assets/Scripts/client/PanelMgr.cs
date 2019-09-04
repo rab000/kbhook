@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using nsocket;
 /// <summary>
 /// 面板主管理器
 /// </summary>
@@ -76,27 +77,26 @@ public class PanelMgr : MonoBehaviour
             CurPanel?.ProcessPressAbleKeyUI("ctrl", BeCtrlOn);
         }
 
-        if (AsyncTCPClient.Ins.BeConected())
+        if (ClientSocketMgr.GetIns().BeConnect())
         {
             Debug.Log("PanelMgr.ProcessKBPress sendMsg key:"+key);
-            AsyncTCPClient.Ins.AsynSend(key);
+            Cmd4SendKB cmd = new Cmd4SendKB();
+            cmd.key = key;
+            ClientSocketMgr.GetIns().Send(cmd);   
         }
         else
         {
             Debug.LogError("sen msg when unconnect!!!");
         }
         
-
     }
 
     void ProcessMouse(string name, object data)
     {
         string key = (string)data;
-
-        //Debug.Log("KBPanel.ProcessMouse->客户端按下:" + key);
-
-        AsyncTCPClient.Ins.AsynSend(key);
-
+        Cmd4SendMouse cmd = new Cmd4SendMouse();
+        cmd.mouseData = key;
+        ClientSocketMgr.GetIns().Send(cmd);
     }
 
     //切换面板事件

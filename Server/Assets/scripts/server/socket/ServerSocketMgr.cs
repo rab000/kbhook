@@ -78,6 +78,9 @@ namespace nsocket
 
         public void Close()
         {
+
+            BeListening = false;
+
             //NINFO 关闭所有客户端连接，客户端单独下线的处理,这里的处理方法未验证
             foreach (var p in SessionDic)
             {

@@ -5,6 +5,7 @@ using System;
 using UnityEngine.UI;
 using WindowsInput;
 using WindowsInput.Native;
+using nsocket;
 
 public class ServerMgr : MonoBehaviour
 {
@@ -42,16 +43,14 @@ public class ServerMgr : MonoBehaviour
 
     void OnEnable()
     {
-        StartBtn.onClick.AddListener(OnBtnClick);
-        AsyncTCPServer.Ins.OnClientConnect += OnClientConnect;
-        AsyncTCPServer.Ins.OnProccessMsg += ProcessKBData;
+        StartBtn.onClick.AddListener(OnBtnClick);       
+        ServerSocketMgr.GetIns().OnClientConnect += OnClientConnect;       
     }
 
     void OnDisable()
     {
         StartBtn.onClick.RemoveListener(OnBtnClick);
-        AsyncTCPServer.Ins.OnClientConnect -= OnClientConnect;
-        AsyncTCPServer.Ins.OnProccessMsg -= ProcessKBData;
+        ServerSocketMgr.GetIns().OnClientConnect -= OnClientConnect;
     }
 
     void OnBtnClick()
@@ -79,11 +78,13 @@ public class ServerMgr : MonoBehaviour
                 _port = int.Parse(PortInputField.text);
             }
 
-            AsyncTCPServer.Ins.SetIPPort(_ip, _port);
-            StartListen(() =>
+            ServerSocketMgr.GetIns().SetIPPort(_ip, _port);
+
+            ServerSocketMgr.GetIns().Start(() =>
             {
                 StartBtnText.text = "stop";
             });
+
         }
 
     }
@@ -93,42 +94,39 @@ public class ServerMgr : MonoBehaviour
         InfoText.text = "client " + clientIP + " connect!!!";
     }
 
-    public void StartListen(Action callback = null)
-    {
-        AsyncTCPServer.Ins.Start(callback);
-    }
 
     public void CloseServer()
     {
-        AsyncTCPServer.Ins.Close();
+        ServerSocketMgr.GetIns().Close();
+
     }
 
     public bool BeServerConnect()
-    {
-        return AsyncTCPServer.BeListening;        
+    {       
+        return ServerSocketMgr.BeListening;        
     }
   
 
-    private void ProcessKBData(string msg)
-    {
-        Debug.Log("ServerMgr.ProcessKBData msg:"+msg);
-        if (!msg.Contains("mouse"))
-        {
-            ProcessKB(msg);
-        }
-        else
-        {
-            ProcessMouse(msg);
-        }
+    //private void ProcessKBData(string msg)
+    //{
+    //    Debug.Log("ServerMgr.ProcessKBData msg:"+msg);
+    //    if (!msg.Contains("mouse"))
+    //    {
+    //        ProcessKB(msg);
+    //    }
+    //    else
+    //    {
+    //        ProcessMouse(msg);
+    //    }
 
-    }
+    //}
 
-    private void ProcessKB(string msg)
+    public void ProcessKB(string msg)
     {        
         sim.Keyboard.TextEntry(msg);
     }
 
-    private void ProcessMouse(string msg)
+    public void ProcessMouse(string msg)
     {
         string[] ss = msg.Split('|');
        

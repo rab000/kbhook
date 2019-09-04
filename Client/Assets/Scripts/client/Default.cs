@@ -2,6 +2,10 @@
 
 public class Default
 {
+    public const short CMD_KB = 100;
+
+    public const short CMD_MOUSE = 200;
+
     public const string EVENT_KB_CLICK = "kb_click";
 
     public const string EVENT_MOUSE = "mouse";

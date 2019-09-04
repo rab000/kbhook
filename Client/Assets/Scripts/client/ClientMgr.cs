@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using nsocket;
 public class ClientMgr : MonoBehaviour
 {
 
@@ -84,12 +84,10 @@ public class ClientMgr : MonoBehaviour
 
     public void Connect(string ip, int port)
     {
-        AsyncTCPClient.Ins.AsynConnect(ip,port, ()=> {
-
+        ClientSocketMgr.GetIns().Connect(ip, port, () =>
+        {
             SetState(ClientStateEnum.Keyboard);
-
-        });
+        });       
     }
-
 
 }
