@@ -67,6 +67,7 @@ namespace nsocket
         /// </summary>
         public void ReadOnceFromSocket()
         {
+            Debug.Log("服务器接收一次数据0");
             if (_Socket == null || !_Socket.Connected)
             {
 
@@ -74,7 +75,7 @@ namespace nsocket
 
                 return;
             }
-
+            Debug.Log("服务器接收一次数据1");
             try
             {
                 int netBufferLength = NetBuffer.Length;

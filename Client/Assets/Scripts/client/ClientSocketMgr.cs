@@ -260,6 +260,7 @@ namespace nsocket
                         try
                         {
                             sendMsgLen += buff.Length;
+                            Debug.Log("客户端开始发送数据------->"+ sendMsgLen);
                             //Debug.LogError ("已发送数据：" + sendMsgLen / 1024 + "kb，合计：" + (RevMsgTotalSize + sendMsgLen) / 1024);
                             _NetworkStream.BeginWrite(buff, 0, buff.Length, new AsyncCallback(OnSend), null);
                         }

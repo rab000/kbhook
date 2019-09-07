@@ -172,12 +172,19 @@ namespace nsocket
 
             Debug.Log("SocketServer.AsyncAcceptClient 客户端连接:" + clientIpPort);
 
-            Loom.QueueOnMainThread(() =>
+            try
             {
+                Loom.QueueOnMainThread(() =>
+                {
 
-                OnClientConnect?.Invoke(clientIpPort);
+                    OnClientConnect?.Invoke(clientIpPort);
 
-            });
+                });
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("server ex------>"+e.ToString());
+            }
 
             Debug.Log(string.Format("SocketServer.AsyncAcceptClient 客户端{0}请求连接...", clientIpPort));
 

@@ -55,6 +55,42 @@ public class ServerMgr : MonoBehaviour
         ServerSocketMgr.GetIns().OnClientConnect -= OnClientConnect;
     }
 
+
+    void Update()
+    {
+        ProcessMsg();
+    }
+
+    public void ProcessMsg()
+    {
+        if (ServerSocketMgr.MsgQue.Count == 0)
+            return;
+
+        var msg = ServerSocketMgr.MsgQue.Dequeue();
+
+        Debug.Log("Server.ProcessMsg cmd:" + msg.Cmd);
+
+
+        if (ServerSocketMgr.RecMsgDic.TryGetValue(msg.Cmd, out Func<Cmd4Rec> commandFunc))
+        {
+            Cmd4Rec cmd4Rec = commandFunc();
+            cmd4Rec.Process(msg.Data);
+        }
+
+        //switch (msg.Cmd)
+        //{
+        //    case 666:
+
+        //        if (ServerSocketMgr.RecMsgDic.TryGetValue(msg.Cmd, out Func<Cmd4Rec> commandFunc))
+        //        {
+        //            Cmd4Rec cmd4Rec = commandFunc();
+        //            cmd4Rec.Process(msg.Data);
+        //        }
+        //        break;
+        //}
+    }
+
+
     void OnBtnClick()
     {
         if (ServerMgr.Ins.BeServerConnect())
@@ -124,7 +160,8 @@ public class ServerMgr : MonoBehaviour
     //}
 
     public void ProcessKB(string msg)
-    {        
+    {
+        Debug.LogError("server kb---->"+msg);
         sim.Keyboard.TextEntry(msg);
     }
 
