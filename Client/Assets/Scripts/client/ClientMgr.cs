@@ -20,6 +20,13 @@ public class ClientMgr : MonoBehaviour
     void OnDestroy()
     {
         Ins = null;
+
+        if (ClientSocketMgr.GetIns().BeConnect())
+        {
+            ClientSocketMgr.GetIns().Close("scn destroy");
+        }
+            
+
     }
 
     void Start()
